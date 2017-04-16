@@ -1,1 +1,1 @@
-# Search-Query-System
+# Search Query System
