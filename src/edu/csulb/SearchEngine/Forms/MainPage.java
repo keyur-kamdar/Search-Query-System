@@ -49,11 +49,7 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 
 import org.eclipse.swt.widgets.Control;
-
-
-
 public class MainPage {
-
 	//Property Class Object
 	
 	
@@ -722,34 +718,24 @@ public class MainPage {
 		}
 		lblCount.setText(String.valueOf(lstFileName.size()));
 	}
-	
-	void removeFileTypeComponents(Container con) 
-	{
-		Component[] components = con.getComponents();
-		for (Component component : components) 
-		{
-			if (component instanceof JComboBox) 
-			{
-				Object sel = ((JComboBox) component).getSelectedItem();
-				if (sel.toString().contains("AcceptAllFileFilter")) 
-				{
-					component.setVisible(false);
-
-				}
-			}
-			if (component instanceof JLabel) 
-			{
-				String text = ((JLabel) component).getText();
-				if (text.equals("Files of Type:")) 
-				{
-					component.setVisible(false);
-
-				}
-			}
-			if (component instanceof Container) 
-			{
-				removeFileTypeComponents((Container) component);
-			}
-		}
-	}
+    void removeFileTypeComponents(Container con) {
+        Component[] components = con.getComponents();
+        for (Component component: components) {
+            if (component instanceof JComboBox) {
+                Object sel = ((JComboBox) component).getSelectedItem();
+                if (sel.toString().contains("AcceptAllFileFilter")) {
+                    component.setVisible(false);
+                }
+            }
+            if (component instanceof JLabel) {
+                String text = ((JLabel) component).getText();
+                if (text.equals("Files of Type:")) {
+                    component.setVisible(false);
+                }
+            }
+            if (component instanceof Container) {
+                removeFileTypeComponents((Container) component);
+            }
+        }
+    }
 }
