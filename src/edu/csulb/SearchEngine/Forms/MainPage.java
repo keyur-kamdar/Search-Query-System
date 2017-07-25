@@ -175,7 +175,6 @@ public class MainPage {
 		
 		listViewer.addSelectionChangedListener(new  ISelectionChangedListener() {
 			
-			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 			
 
@@ -201,13 +200,11 @@ public class MainPage {
 		txtSearch.setBounds(9, 88, 533, 21);
 		txtSearch.addKeyListener(new KeyListener() {
 			
-			@Override
 			public void keyReleased(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
 			}
 			
-			@Override
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				
@@ -322,7 +319,6 @@ public class MainPage {
 		
 		chkVariableByte.addSelectionListener(new SelectionListener() {
 			
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
 				if(chkVariableByte.getSelection())
@@ -348,7 +344,6 @@ public class MainPage {
 				
 			}
 			
-			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
 				
@@ -357,7 +352,6 @@ public class MainPage {
 		
 		chkImpactOrder.addSelectionListener(new SelectionListener() {
 			
-			@Override
 			public void widgetSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
 				
@@ -396,7 +390,6 @@ public class MainPage {
 				
 			}
 			
-			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
 				// TODO Auto-generated method stub
 				

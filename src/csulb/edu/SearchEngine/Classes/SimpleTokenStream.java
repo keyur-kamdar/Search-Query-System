@@ -37,7 +37,6 @@ public class SimpleTokenStream implements TokenStream {
 	/**
 	 * Returns true if the stream has tokens remaining.
 	 */
-	@Override
 	public boolean hasNextToken() {
 		// return mReader.hasNext();
 		return tokens.hasMoreTokens();
@@ -85,7 +84,6 @@ public class SimpleTokenStream implements TokenStream {
 	 * Returns the next token from the stream, or null if there is no token
 	 * available.
 	 */
-	@Override
 	public String nextToken() {
 		if (!hasNextToken())
 			return null;

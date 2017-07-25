@@ -5,7 +5,7 @@ import java.util.List;
 
 public class KGramIndex {
 	SearchWord searchWord;	
-	private final ArrayList<String> stringArray = new ArrayList<>();
+	private final ArrayList<String> stringArray = new ArrayList<String>();
 
 
 	public ArrayList<String> GenKGramIndex(String wildcardQuery) {
