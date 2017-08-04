@@ -2,7 +2,7 @@ package edu.csulb.SearchEngine.Forms;
 
 import java.awt.Component;
 import java.awt.Container;
-
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -19,6 +19,7 @@ import javax.swing.KeyStroke;
 import javax.swing.UIManager;
 
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Group;
 
 import org.eclipse.swt.widgets.Shell;
@@ -49,11 +50,9 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.DirectoryDialog;
 public class MainPage {
     //Property Class Object
-
-
-
     protected Shell shell;
     private Text txtLibraryPath;
     private Button btnGenerateLibrary;
@@ -94,25 +93,14 @@ public class MainPage {
     }
 
     public static void main(String[] args) {
-
-
         try {
             MainPage window = new MainPage();
             window.open();
 
-
-
-
-
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-
     }
-
-
-
 
     /**
      * Open the window.
@@ -129,17 +117,11 @@ public class MainPage {
         chkImpactOrder.setText("Impact Order");
         chkImpactOrder.setBounds(476, 135, 93, 16);
 
-
-
-
-
         shell.open();
         shell.layout();
         txtLibraryPath.setText(Properties.library_Directory_Path.toString());
 
-
         group2 = new Group(shell, SWT.SHADOW_IN);
-
         btnGenerateLibrary = new Button(shell, SWT.NONE);
         btnGenerateLibrary.addSelectionListener(new SelectionAdapter() {
             @Override
@@ -149,27 +131,17 @@ public class MainPage {
                     objSimpleEngine.GenerateLibrary();
                     Properties.Lib = false;
                     objDiskPositionalIndex = new DiskPositionalIndex();
-
-
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-
-
-
             }
         });
         btnGenerateLibrary.setBounds(10, 46, 98, 25);
         btnGenerateLibrary.setText("Generate Library");
 
-
         listViewer = new ListViewer(shell, SWT.BORDER | SWT.V_SCROLL);
-
         listViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
             public void selectionChanged(SelectionChangedEvent event) {
-
-
                 try {
                     String path = event.getSelection().toString().replace("[", "");
                     path = path.replace("]", "");
@@ -178,37 +150,25 @@ public class MainPage {
                     // TODO Auto-generated catch block
                     e1.printStackTrace();
                 }
-
                 // TODO Auto-generated method stub
-
             }
         });
-
-
-
-
 
         txtSearch = new Text(shell, SWT.BORDER);
         txtSearch.setBounds(9, 88, 533, 21);
         txtSearch.addKeyListener(new KeyListener() {
-
             public void keyReleased(KeyEvent e) {
                 // TODO Auto-generated method stub
-
             }
-
             public void keyPressed(KeyEvent e) {
                 // TODO Auto-generated method stub
-
                 //SearchClick();
             }
         });
 
-
         Label lblFiles = new Label(shell, SWT.NONE);
         lblFiles.setBounds(10, 136, 55, 15);
         lblFiles.setText("FILES :");
-
 
         org.eclipse.swt.widgets.List list = listViewer.getList();
         list.setBounds(71, 132, 191, 349);
@@ -260,21 +220,11 @@ public class MainPage {
                     Properties.VariableLib = false;
                     objDiskPositionalIndex = new DiskPositionalIndex();
 
-
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-
-
-
             }
         });
-
-
-
-
-
-
         rbRankRetrieval = new Button(shell, SWT.RADIO);
         rbRankRetrieval.setSelection(true);
         rbRankRetrieval.setText("Rank Retrieval");
@@ -289,22 +239,16 @@ public class MainPage {
                     objSimpleEngine.GenerateLibrary();
                     Properties.ImpactOrderLib = false;
                     objDiskPositionalIndex = new DiskPositionalIndex();
-
-
                 } catch (Exception ex) {
                     System.out.println(ex);
                 }
-
             }
         });
         btnImpactOrdering.setEnabled(false);
         btnImpactOrdering.setText("Generate Impact Ordered Libbrary");
         btnImpactOrdering.setBounds(315, 46, 208, 25);
 
-
-
         chkVariableByte.addSelectionListener(new SelectionListener() {
-
             public void widgetSelected(SelectionEvent e) {
                 // TODO Auto-generated method stub
                 if (chkVariableByte.getSelection()) {
@@ -313,28 +257,22 @@ public class MainPage {
                     Properties.VariableByteEncode = true;
                     Properties.NoEncode = false;
                     Properties.Impactorder = false;
-
-
                 } else {
                     btnVariableByteEncodeLib.setEnabled(false);
                     btnGenerateLibrary.setEnabled(true);
                     Properties.VariableByteEncode = false;
                     Properties.NoEncode = true;
                     Properties.Impactorder = false;
-
                 }
                 objDiskPositionalIndex = new DiskPositionalIndex();
-
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
                 // TODO Auto-generated method stub
-
             }
         });
 
         chkImpactOrder.addSelectionListener(new SelectionListener() {
-
             public void widgetSelected(SelectionEvent e) {
                 // TODO Auto-generated method stub
 
@@ -364,16 +302,12 @@ public class MainPage {
                     chkVariableByte.setEnabled(true);
                 }
                 objDiskPositionalIndex = new DiskPositionalIndex();
-
             }
 
             public void widgetDefaultSelected(SelectionEvent e) {
                 // TODO Auto-generated method stub
-
             }
         });
-
-
         shell.setTabList(new Control[] {
             btnBrowse,
             txtLibraryPath,
@@ -392,18 +326,11 @@ public class MainPage {
         if (listViewer.getInput() != null) {
             listViewer.refresh();
             listViewer.setInput(null);
-
         }
-
-
     }
-
-
     public void OpenFile(String file) throws Exception {
         Runtime r1 = Runtime.getRuntime();
-
         r1.exec("notepad " + file);
-
     }
 
     /**
@@ -412,26 +339,16 @@ public class MainPage {
      *
      */
 
-
     protected void createContents(Display d) {
-
         shell = new Shell(d);
         shell.setBackground(SWTResourceManager.getColor(SWT.COLOR_WIDGET_BACKGROUND));
-
-
         shell.setSize(683, 565);
         shell.setText("SWT Application");
-
-
-
-
 
         btnBrowse = new Button(shell, SWT.NONE);
         btnBrowse.addSelectionListener(new SelectionAdapter() {
             @Override
             public void widgetSelected(SelectionEvent e) {
-
-
 
                 SelectLibraryDirectory();
                 Properties.Lib = true;
@@ -440,9 +357,6 @@ public class MainPage {
 
                 SimpleEngine objSimpleEngine = new SimpleEngine();
                 objDiskPositionalIndex = new DiskPositionalIndex();
-
-
-
             }
         });
         btnBrowse.setBounds(10, 5, 75, 25);
@@ -459,7 +373,6 @@ public class MainPage {
                 }
 
                 String str = txtSearch.getText();
-
                 if (!Query_Syntax_Check(str)) {
                     MessageDialog.openError(shell, "Syntex Error", "Enter Correct String Format!");
                     return;
@@ -487,17 +400,10 @@ public class MainPage {
                 tt = tt / 1000;
                 System.out.println(tt);
 
-
-
-
-
-
             }
         });
         btnSearch.setBounds(559, 86, 75, 25);
         btnSearch.setText("SEARCH");
-
-
         txtLibraryPath = new Text(shell, SWT.BORDER);
         txtLibraryPath.setEditable(false);
         txtLibraryPath.setBounds(105, 9, 521, 21);
@@ -505,9 +411,6 @@ public class MainPage {
         InputMap im = (InputMap) UIManager.get("Button.focusInputMap");
         im.put(KeyStroke.getKeyStroke("ENTER"), "pressed");
         im.put(KeyStroke.getKeyStroke("released ENTER"), "released");
-
-
-
     }
 
     protected void rankedRetrieval() {
@@ -523,8 +426,6 @@ public class MainPage {
         } else {
             lst = rankedRetrieval.ProcessRankRetrieval(query);
         }
-
-
         lstResultDocuments = new int[lst.size()];
         for (int i = 0; i < lst.size(); i++) {
             lstResultDocuments[i] = lst.get(i);
@@ -532,27 +433,41 @@ public class MainPage {
         DisplayResult(lstResultDocuments);
     }
 
-
-
-
     void SelectLibraryDirectory() {
 
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(Properties.library_Directory_Path.toFile());
+    	DirectoryDialog dlg = new DirectoryDialog(shell);
+    	dlg.setText("Choose directory");
+    	//dlg.setFilterPath("C:/");
+    	String dir = dlg.open();
+    	Properties.library_Directory_Path = Paths.get(dir).toAbsolutePath();
+    	txtLibraryPath.setText(dir);
+    	System.out.println(dir);
+    	
+    	/*Display display = new Display();
+        Shell shell = new Shell(display);
+        shell.setText("Directory Browser");
+    	DirectoryDialog dlg = new DirectoryDialog(shell);
+    	dlg.setText("SWT's DirectoryDialog");
+    	dlg.setMessage("Select a directory");
+    	String dir = dlg.open();
+    	if (dir != null) {
+            // Set the text box to the new selection
+            System.out.println(dir);
+    		//text.setText(dir);
+          }*/
+
+    	
+        /*JFileChooser chooser = new JFileChooser();
+        chooser.showOpenDialog(null);*/
+        /*chooser.setCurrentDirectory(Properties.library_Directory_Path.toFile());
         chooser.setDialogTitle("Select a Directory for Library");
         chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-
         removeFileTypeComponents(chooser);
-
-
-
+        
         if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-
             Properties.library_Directory_Path = chooser.getSelectedFile().toPath();
             txtLibraryPath.setText(Properties.library_Directory_Path.toString());
-        }
-
-
+        }*/
     }
 
     void GetNear() {
@@ -560,20 +475,14 @@ public class MainPage {
         lstResultDocuments = new int[0];
         lblNoResultFound.setVisible(false);
         SearchWord objSearchWord = new SearchWord(objDiskPositionalIndex);
-
         lstResultDocuments = objSearchWord.GetNear(txtSearch.getText());
         DisplayResult(lstResultDocuments);
-
-
     }
 
     void searchKgram() {
         clearList();
         lstResultDocuments = new int[0];
         lblNoResultFound.setVisible(false);
-
-
-
         String str = txtSearch.getText();
         SearchWord objSearchWord;
         KGramIndex kGramIndex = new KGramIndex();
@@ -586,7 +495,6 @@ public class MainPage {
         for (int i = 0; i < lst.size(); i++) {
             lstResultDocuments[i] = lst.get(i);
         }
-
         DisplayResult(lstResultDocuments);
     }
 
@@ -631,43 +539,29 @@ public class MainPage {
     }
 
     void SearchClick() {
-
         clearList();
         lstResultDocuments = new int[0];
         lblNoResultFound.setVisible(false);
-
-
         String str = txtSearch.getText();
         SearchWord objSearchWord;
-
         objSearchWord = new SearchWord(objDiskPositionalIndex);
-
-
         lstResultDocuments = objSearchWord.SearchResult(str);
-
         DisplayResult(lstResultDocuments);
-
-
-
-
-
     }
 
     void DisplayResult(int[] lstResultDocuments) {
         List < String > lstFileName = new ArrayList < String > ();
         for (int i = 0; i < lstResultDocuments.length; i++) {
             lstFileName.add(SimpleEngine.listOfFiles[lstResultDocuments[i]].getName());
-
         }
         listViewer.setContentProvider(new ArrayContentProvider());
         listViewer.setInput(lstFileName);
         if (lstResultDocuments.length <= 0) {
             lblNoResultFound.setVisible(true);
-
-
         }
         lblCount.setText(String.valueOf(lstFileName.size()));
     }
+    
     void removeFileTypeComponents(Container con) {
         Component[] components = con.getComponents();
         for (Component component: components) {
